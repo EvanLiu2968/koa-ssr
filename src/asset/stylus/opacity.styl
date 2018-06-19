@@ -1,0 +1,10 @@
+/**
+ * 直接写: opacity: 0.9,
+ * 最终生成：
+  * unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=90)');
+  * opacity: 0.9,
+ */
+opacity(n)
+  opacity n
+  if support-for-ie
+    filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')

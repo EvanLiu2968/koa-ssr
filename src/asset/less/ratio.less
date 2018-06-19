@@ -1,0 +1,39 @@
+ /*
+  *高宽等比例解决方法，前提需定宽,利用padding的100%为宽的100%
+  <div class="ratio-box ratio1-1">
+    <div class="ratio-content"></div>
+  </div>
+ */
+
+.ratio-box {
+  position:relative;
+  &:before {
+    content: "";
+    display: block;
+  }
+  &.ratio1-1:before {
+    padding-top: 100%;
+  }
+  &.ratio1-1:before {
+    padding-top: 100%;
+  }
+  &.ratio1-2:before {
+    padding-top: 200%;
+  }
+  &.ratio2-1:before {
+    padding-top: 50%;
+  }
+  &.ratio4-3:before {
+    padding-top: 75%;
+  }
+  &.ratio16-9:before {
+    padding-top: 56.25%;
+  }
+}
+
+.ratio-content {
+  position:absolute;
+  top:0;bottom:0;
+  left:0;right:0;
+  overflow:hidden;
+}

@@ -1,0 +1,69 @@
+@import '../../asset/stylus/index.styl'
+@import '../../asset/stylus/header.styl'
+
+.md-category
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  height: 30px;
+  color: #999;
+  >li
+    padding: 0 15px;
+    font-size: 15px;
+    line-height: 30px;
+    color: #8590a6;
+    cursor:pointer
+    &:last-child
+      padding-right:0
+    &:hover, &.active
+      color:#444
+
+.md-content
+  position:relative
+  background:#fff
+
+.md-list
+  >li
+    padding:10px 20px
+    border-bottom:1px solid $borderColor
+    cursor:pointer
+    .md-title
+      color:#666
+      font-size:16px
+    &:hover
+      background:#f6f6f6
+      .md-title
+        color:#333
+      
+    .md-desc
+      padding:6px 0
+      font-size: 12px;
+    .md-time
+      margin-right:20px
+      line-height: 24px;
+      color:#999
+    .md-tag
+      position: relative;
+      display: inline-block;
+      margin-right:10px
+      padding: 0 12px;
+      height: 24px;
+      line-height: 24px;
+      color: #0084ff;
+      vertical-align: top;
+      border-radius: 100px;
+      background: rgba(0,132,255,.1);
+
+.markdown-body
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 30px;
+
+@media (max-width: 767px)
+  .markdown-body
+    padding: 10px;

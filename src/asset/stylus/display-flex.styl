@@ -1,0 +1,32 @@
+display-flex($flex-flow = row nowrap, $justify-content = flex-start, $align-items = initial, $align-content = initial)
+  // @media screen and (-webkit-min-device-pixel-ratio:0),@-moz-document url-prefix()
+  @media screen and (min-device-width: 380px)
+    display: flex
+    flex-flow: $flex-flow
+    justify-content: $justify-content
+    align-items: $align-items
+    align-content: $align-content
+  @media screen\0
+    font-size: 0
+    li,>*
+      display: inline-block;
+
+flex-row( $justify-content = flex-start, $align-items = initial, $align-content = initial)
+  display-flex(row nowrap, $justify-content, $align-items, $align-content)
+
+flex-column( $justify-content = flex-start, $align-items = initial, $align-content = initial)
+  display-flex(column nowrap, $justify-content, $align-items, $align-content)
+
+
+.flex-row
+  display-flex(row nowrap, flex-start, center, center)
+
+.row-flex-justify-between
+  display-flex(row nowrap, space-between, flex-start, flex-start)
+
+.row-flex-justify-between-center
+  display-flex(row nowrap, space-between, center, center)
+
+.flex-center-row
+  display-flex(row nowrap, center, center, center)
+

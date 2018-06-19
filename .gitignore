@@ -1,0 +1,11 @@
+.DS_Store
+.vscode
+.idea
+.DS_Store
+npm-debug.log
+package-lock.json
+/node_modules
+/logs/*
+/public/*
+!public/images/*
+/test.js
