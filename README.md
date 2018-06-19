@@ -36,7 +36,7 @@ npm ii
 # 本地开发
 npm run dev
 # 打包构建
-npm run dev
+npm run build
 # 生产运行
-npm run dev
+npm run start
 ```
