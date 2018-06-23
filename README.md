@@ -32,7 +32,7 @@ config.middleware = config.preMiddleware.concat(config.coreMiddleware).concat(co
 
 ```bash
 # install with taobao registry
-npm ii
+npm run ii
 # 本地开发
 npm run dev
 # 打包构建
