@@ -23,7 +23,6 @@ entry.forEach(function(page){
   let entryName = page.match(/page\/(\w+)\//)[1];
   entries[entryName] = ['babel-polyfill', `./page/${entryName}/index.js`];
   if(config.env == 'dev'){
-    'webpack/hot/only-dev-server',
     entries[entryName].unshift('webpack/hot/only-dev-server', 'webpack-dev-server/client?http://localhost:'+ config.webpackPort)
   }
   let template = util.pathJoin('src/entry/layout.html');
