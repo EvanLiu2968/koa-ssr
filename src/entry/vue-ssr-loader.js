@@ -15,12 +15,11 @@ module.exports = function (vm, element){
     const DOMRender = require('vue-server-renderer').createRenderer()
     // 返回Promise可以配合await变成同步
     return new Promise((resolve,reject)=>{
-      // Vue以回调的方式返回html有点坑
-      DOMRender.renderToString(vm, (err, html) => {
-        if (err){
-          reject(err)
+      DOMRender.renderToString(vm, (e, html) => {
+        if (e){
+          reject(e)
         }else{
-          resolve(html) // => <div data-server-rendered="true">Hello World</div>
+          resolve(html)
         }
       })
     })
