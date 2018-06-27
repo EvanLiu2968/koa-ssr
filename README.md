@@ -9,11 +9,11 @@
 ## Node服务模块
 
 借鉴egg的 `约定优于配置` 设计思想，
-`server/core`为微框架核心，定制了一整套服务模块规范，可参见server源码，示例如下
+`app/core`为微框架核心，定制了一整套服务模块规范，可参见server源码，示例如下
 
 ### Extend
 
-`server/extend`目录下的模块用于扩展ctx对象
+`app/extend`目录下的模块用于扩展ctx对象
 调用方式示例：`ctx.helper...`
 
 ### Middleware

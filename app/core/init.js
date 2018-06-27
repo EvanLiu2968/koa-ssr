@@ -1,15 +1,15 @@
 /*
  * 初始化app
  */
-const Koa = require('./application')
+const CoreApplication = require('./application')
 const Router = require('koa-router')
 const static = require('koa-static-cache')
 const views = require('koa-views')
 const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
 const cors = require('kcors')
 const etag = require('koa-etag')
 const debug = require('debug')('app')
+const path = require('path')
 
 Date.prototype.format = function(fmt) {
   var o = {
@@ -29,9 +29,11 @@ Date.prototype.format = function(fmt) {
   return fmt;
 }
 
-const app = new Koa()
+const app = new CoreApplication()
 
-const config = require('../../config')
+const config = require(path.join(process.cwd(), 'config'))
+config.baseDir = config.baseDir || process.cwd();
+
 app.config = config
 app.router = new Router();
 
@@ -46,6 +48,13 @@ app.use(async (ctx, next)=>{
     ctx.body = null;
   }
 })
+app.use(async (ctx, next)=>{
+  try{
+    await next()
+  } catch(e) {
+    app.emit('error', e, ctx)
+  }
+})
 
 app.use(etag())
 
@@ -56,8 +65,6 @@ app.use(views(config.views.dir, config.views.option))
 require('./middleware')(app, 'preMiddleware');
 
 app.use(bodyparser())
-
-app.use(logger())
 
 app.use(cors())
 
@@ -71,7 +78,9 @@ app.on('error', async (err, ctx) => {
   debug(err.stack)
 })
 
-app.listen(config.port, (err, status) => {
-  if(err) logger.error('app start error', err);
-  console.log('listening at localhost:' + config.port)
+app.listen(config.port, (error, status) => {
+  if(error) {
+    app.emit('error', error);
+  }
+  app.emit('started')
 })
