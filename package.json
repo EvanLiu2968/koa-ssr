@@ -51,6 +51,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "remarkable": "^1.7.1",
+    "vue": "^2.5.16",
     "web-inject": "^1.0.0"
   },
   "devDependencies": {
