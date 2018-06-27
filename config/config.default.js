@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = {
 
-  baseDir: path.join(__dirname, '../'),
+  // baseDir: path.join(__dirname, '../'),
   siteName: 'EvanLiu',
 
   // 服务端口
@@ -12,6 +12,7 @@ module.exports = {
   keys: 'EvanLiu_key',
   // 前置中间件
   preMiddleware: [
+    'logger',
     'session',
     'httpProxy',
   ],
