@@ -1,3 +1,5 @@
+'use strict';
+
 const session = require('koa-session-minimal')
 // const redis = require('koa-redis')
 
