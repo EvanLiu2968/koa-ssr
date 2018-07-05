@@ -4,7 +4,15 @@
 
 ## 打包构建
 
+### 配置项
+
 实际运行的配置为`config.default.js` + `config.${process.env.APP_ENV}.js`
+
+### 多页面入口
+
+页面入口为`src/page/**/index.js`
+
+html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 
 ## Node服务模块
 
