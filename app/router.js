@@ -13,6 +13,13 @@ module.exports = app => {
       description: `首页`,
     })
   });
+  router.get('/404', async function(ctx, next) {
+    return await ctx.render('404', {
+      title: `404 - ${config.siteName}`,
+      keywords: `404`,
+      description: `404`,
+    })
+  });
   router.get('/article', async function(ctx, next) {
     return await ctx.render('article', {
       title: `文章 - ${config.siteName}`,
