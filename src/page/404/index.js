@@ -2,17 +2,16 @@
  * there are some eggs for users with all pages
  */
 import Vue from 'vue';
+import App from './app';
+import axios from 'libs/axios';
 import ssrLoader from 'entry/vue-ssr-loader'
 
+// Vue.use(ElementUI,{size:'small'});
+
 const vm = new Vue({
-  render: function (createElement) { 
-    return createElement('h1', {
-      // attrs: { id: 'egg' },
-      // 'class': { egg: true },
-      // style: { display: 'none' },
-      domProps: { innerHTML: '要docker不要bug' }
-    })
-  }
+  // router,
+  // store,
+  render: h => h(App)
 })
 
 ssrLoader(vm)
