@@ -32,6 +32,7 @@ module.exports = app => {
       title: `照片 - ${config.siteName}`,
       keywords: `照片`,
       description: `照片`,
+      isMobile: ctx.validate.isMobile.apply(ctx)
     })
   });
   // api control
