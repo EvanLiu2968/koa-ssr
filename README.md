@@ -22,7 +22,7 @@ html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 ### Extend
 
 `app/extend`目录下的模块用于扩展ctx对象
-调用方式示例：`ctx.helper...`
+调用方式示例：`ctx.validate.isMobile.apply(ctx)`
 
 ### Middleware
 
