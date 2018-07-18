@@ -83,7 +83,7 @@ class ImgLazyLoad extends React.Component {
 };
 
 ImgLazyLoad.defaultProps = {
-  placeholder:<div className="flex-row"><img src="/images/img-loading.gif" /></div>,
+  placeholder:<div className="img-placeholder"></div>,
   animate:'fadeIn', //'fadein':透明度渐变 'blurIn':模糊渐变(参考知乎)
   once:true
 };

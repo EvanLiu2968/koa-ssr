@@ -44,7 +44,7 @@ class App extends React.Component {
                 return (
                   <div key={i} className="waterfall-item">
                     <div className="img-box">
-                      <ImgLazyLoad src={item.img} />
+                      <ImgLazyLoad src={item.img} placeholder={<div className="flex-center-row" style={{minHeight: '320px'}}><img className="loading" src="/images/loading.gif" /></div>} />
                       <div className="cover"></div>
                     </div>
                     <p className="description">{item.desc}</p>
