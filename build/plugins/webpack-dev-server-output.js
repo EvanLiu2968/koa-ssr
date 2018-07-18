@@ -19,16 +19,13 @@ DevServerOutput.prototype.apply = function(compiler) {
   compiler.plugin("emit", function(compilation, callback) {
     console.log("The compiler is starting a new compilation...");
     for (let filename in compilation.assets) {
-
-      let fileArr = filename.split(path.sep);
-      
+      let fileArr = filename.split('/'); // replace path.sep with / for fix windows DevServerOutput
       if (fileArr.length > 1) {
         if (!fs.existsSync(path.join(outputPath, fileArr[0]))) {
           fs.mkdirSync(path.join(outputPath, fileArr[0]), '0777');
         }
         fs.writeFileSync(path.join(outputPath, filename), compilation.assets[filename].source());
       }
-
     }
     callback();
   });

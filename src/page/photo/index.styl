@@ -2,7 +2,17 @@
 @import '../../asset/stylus/header.styl'
 
 .picture-content
-  position:relative
+  position:relative;
+
+.flex-center-row
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  &>.loading
+    width:auto !important;
+    height:auto !important;
 
 /*
  *图片瀑布流层，经测试ie10及以上支持，ie9未测试
