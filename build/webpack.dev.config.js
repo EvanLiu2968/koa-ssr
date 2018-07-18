@@ -29,7 +29,7 @@ module.exports = merge(baseWebpackConfig, {
         port: 3000
       },
       {
-        reload: false
+        reload: true
       }
     )
   ],
