@@ -13,14 +13,16 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      loading: true,
       photos: []
     }
   }
   componentDidMount(){
-    axios.get('/getPhoto').then((res)=>{
+    axios({
+      method: 'get',
+      url: '/getPhoto',
+      loading: true
+    }).then((res)=>{
       this.setState({
-        loading: false,
         photos: res.photoList
       })
     })
@@ -28,7 +30,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="wrapper">
-        <Loading loading={this.state.loading} fullscreen={this.state.loading}></Loading>
         <header className="header">
           <div className="container">
             <div className="header-left">

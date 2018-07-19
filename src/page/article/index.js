@@ -3,20 +3,13 @@
  */
 import React from 'react'
 import ssrLoader from 'entry/react-ssr-loader'
-import Loading from 'component/loading'
 import webInject from 'web-inject'
 import axios from 'libs/axios'
 import 'asset/css/reset.css'
 import 'asset/css/markdown.css'
 import './index.styl'
 
-const isClient = typeof window !== 'undefined'
-if(isClient){
-  // http://www.bootcdn.cn/highlight.js/
-  // inject.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css')
-  // inject.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/googlecode.min.css')
-  webInject.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs.min.css')
-}
+webInject.css('https://cdn.bootcss.com/highlight.js/9.12.0/styles/vs.min.css')
 
 class App extends React.Component {
   constructor(props){
@@ -26,20 +19,19 @@ class App extends React.Component {
       active: '',
       mdList: [],
       mdHtml: '',
-      loading: false,
       mdShow: false
     }
     this.renderMarkdown.bind(this)
     this.renderMdList.bind(this)
   }
   componentDidMount(){
-    this.setState({
-      loading:true
-    })
-    axios.get('/getBlog').then((res)=>{
+    axios({
+      method: 'get',
+      url: '/getBlog',
+      loading: true
+    }).then((res)=>{
       this.baseUrl = res.baseUrl
       this.setState({
-        loading: false,
         category: res.category
       })
       this.renderMdList( res.category[0].category,res.category[0].children)
@@ -47,17 +39,16 @@ class App extends React.Component {
   }
   renderMarkdown(category,item){
     let file = category +'/' +item.src
-    this.setState({
-      loading:true
-    })
-    axios.get('/getMarkdown',{
+    axios({
+      method: 'get',
+      url: '/getMarkdown',
       params: {
         file: file
-      }
+      },
+      loading: true
     }).then((res)=>{
       this.setState({
         mdHtml: res,
-        loading: false,
         mdShow: true
       })
     })
@@ -75,7 +66,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="wrapper">
-        <Loading loading={this.state.loading} fullscreen={this.state.loading}></Loading>
         <header className="header">
           <div className="container">
             <div className="header-left">

@@ -5,8 +5,8 @@
 import React from 'React';
 import ReactDOM from 'react-dom';
 // import PropTypes from 'prop-types';
-import { on, off } from './utils/event';
-import { passiveEvent } from './utils/passiveEventSupport';
+import { on, off } from '../utils/event';
+import { passiveEvent } from '../utils/passiveEventSupport';
 import { checkOverflowVisible, checkNormalVisible } from './utils/checkVisible';
 import scrollParent from './utils/scrollParent';
 import debounce from './utils/debounce';

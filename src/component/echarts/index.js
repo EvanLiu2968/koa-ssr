@@ -3,9 +3,13 @@
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import webInject from 'web-inject'
 
-import { inject } from 'libs'
-import elementResizeEvent from '../utils/element-resize-event';
+const isClient = typeof window !== 'undefined'
+if(isClient){
+  var elementResizeEvent = require('../utils/element-resize-event')
+}
 
 const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
@@ -25,7 +29,7 @@ export default class Echarts extends React.Component {
       this.rerender();
     }else{
       // cdn: http://www.bootcdn.cn/echarts/
-      inject().js('https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',()=>{
+      webInject.js(this.props.cdn,()=>{
         this.echarts = window.echarts
         this.echartsElement=ReactDOM.findDOMNode(this);
         this.rerender();
@@ -139,18 +143,19 @@ export default class Echarts extends React.Component {
   }
 }
 
-// Echarts.propTypes = {
-//   option: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-//   notMerge: PropTypes.bool,
-//   lazyUpdate: PropTypes.bool,
-//   style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-//   className: PropTypes.string,
-//   theme: PropTypes.string,
-//   onChartReady: PropTypes.func,
-//   showLoading: PropTypes.bool,
-//   loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-//   onEvents: PropTypes.object // eslint-disable-line react/forbid-prop-types
-// };
+Echarts.propTypes = {
+  option: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  notMerge: PropTypes.bool,
+  lazyUpdate: PropTypes.bool,
+  style: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  className: PropTypes.string,
+  cdn: PropTypes.string,
+  theme: PropTypes.string,
+  onChartReady: PropTypes.func,
+  showLoading: PropTypes.bool,
+  loadingOption: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  onEvents: PropTypes.object // eslint-disable-line react/forbid-prop-types
+};
 
 Echarts.defaultProps = {
   option: {},
@@ -158,6 +163,7 @@ Echarts.defaultProps = {
   lazyUpdate: false,
   style: {},
   className: '',
+  cdn: 'https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js',
   theme: null,
   onChartReady: () => {},
   showLoading: false,
