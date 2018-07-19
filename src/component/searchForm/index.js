@@ -77,19 +77,19 @@ class SearchForm extends React.Component {
   render(){
     return (
       <div className={this.props.containerClass}>
-        <div className="inputGroup">
-          <lable className="inputItem input-search">
-            <input type="text" className="form_control" value={this.state.value} placeholder={this.props.placeholder} ref={(input)=>{this.searchInput=input}} onChange={()=>{this.onSearchChange.call(this)}}/>
-            <span className="fkp-input-error"></span>
-            <span className="fkp-desc">
-              <div className="list-container" style={{display:this.state.showDropdown?'block':'none'}}>{this.dropdown}</div>
+        <div className="form-group">
+          <label className="form-item">
+            <input type="text" className="form-control" value={this.state.value} placeholder={this.props.placeholder} ref={(input)=>{this.searchInput=input}} onChange={()=>{this.onSearchChange.call(this)}}/>
+            <span className="form-control-error"></span>
+            <span className="form-control-dropdown" style={{display:this.state.showDropdown?'block':'none'}}>
+              {this.dropdown}
             </span>
-          </lable>
-          {this.props.searchBtn&&(
-          <lable className="inputItem btn-search">
-            <input type="button" className="btn" value={this.props.searchBtnName} ref={(btn)=>{this.searchBtn=btn}} onClick={()=>this.props.onSearchConfirm.call(this,this.state.value)}/>
-          </lable>
-          )}
+          </label>
+          {this.props.searchBtn &&
+          <button type="button" className="btn btn-search" ref={(btn)=>{this.searchBtn=btn}} onClick={()=>this.props.onSearchConfirm.call(this,this.state.value)}>
+            {this.props.searchBtnName}
+          </button>
+          }
         </div>
       </div>
     )
