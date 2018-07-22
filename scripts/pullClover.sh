@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # target folder: 与整个项目同级的clover
-if [ ! -x "../scripts/pullClover.sh" ];then
-echo 'please enter: sodu chmod 777 ../scripts/pullClover.sh'
+if [ ! -x "./scripts/pullClover.sh" ];then
+echo './scripts/pullClover.sh 没有执行权限'
+echo 'please enter: sodu chmod 777 ./scripts/pullClover.sh'
 fi
 
 if [ ! -d "../clover" ];then

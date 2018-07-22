@@ -21,6 +21,10 @@ module.exports = app => {
 
   app.on('started', function(){
     console.log('=== app启动完成 ===')
-    console.log('listening at localhost:' + config.port)
+    if(process.env.APP_ENV == 'dev'){
+      console.log('or you can refresh localhost:' + config.browserSync.port)
+    }else{
+      console.log('listening at localhost:' + config.port)
+    }
   })
 }
