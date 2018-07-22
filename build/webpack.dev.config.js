@@ -16,7 +16,7 @@ module.exports = merge(baseWebpackConfig, {
     new WebpackDevServerOutput(config.static.dir),
     new BrowserSyncPlugin(
       {
-        reloadDelay: 1000,
+        reloadDelay: config.browserSync.reloadDelay,
         proxy: {
           target: 'http://localhost:'+config.webpackPort,
           ws: true
@@ -26,7 +26,7 @@ module.exports = merge(baseWebpackConfig, {
         notify: false,
         injectChanges: true,
         host: 'localhost',
-        port: 3000
+        port: config.browserSync.port
       },
       {
         reload: true

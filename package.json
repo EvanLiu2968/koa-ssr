@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env APP_ENV=dev nodemon --watch app index.js",
+    "dev": "cross-env APP_ENV=dev node index.js",
     "build": "cross-env node build/index.js",
     "start": "cross-env node index.js",
     "clean": "rm -rf public/js/* && rm -rf public/css/* && rm -rf public/html/* && rm -rf public/fonts/* ",

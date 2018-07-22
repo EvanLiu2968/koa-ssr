@@ -3,6 +3,10 @@
  */
 module.exports = {
   webpackPort: 8000,
+  browserSync: {
+    reloadDelay: 1000,
+    port: 3000,
+  },
   redis: {
     url: '//127.0.0.1:16379'
   },
