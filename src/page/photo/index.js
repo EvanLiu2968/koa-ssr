@@ -4,7 +4,6 @@
 import React from 'react'
 import ssrLoader from 'entry/react-ssr-loader'
 import ImgLazyLoad from 'component/lazyload'
-import Loading from 'component/loading'
 import axios from 'libs/axios'
 import 'asset/css/reset.css'
 import './index.styl'
@@ -19,7 +18,7 @@ class App extends React.Component {
   componentDidMount(){
     axios({
       method: 'get',
-      url: '/getPhoto',
+      url: '/api/getPhoto',
       loading: true
     }).then((res)=>{
       this.setState({

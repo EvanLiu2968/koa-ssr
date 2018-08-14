@@ -47,6 +47,22 @@ module.exports = {
   },
   // 默认首页
   root: 'index',
+  // koa-bodyparse
+  bodyparser: {
+    option: {
+      enableTypes: ['json', 'form'],
+      encoding: 'utf-8',
+      formLimit: "5mb",
+      jsonLimit: "5mb",
+      textLimit: "5mb"
+    }
+  },
+  // 跨域资源共享 kros
+  cors: {
+    option: {
+      //
+    }
+  },
 
   // cloverDir: 'https://raw.githubusercontent.com/EvanLiu2968/clover/master/',
   cloverDir: path.join(__dirname, '../../clover/'),
