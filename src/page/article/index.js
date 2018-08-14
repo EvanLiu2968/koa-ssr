@@ -27,7 +27,7 @@ class App extends React.Component {
   componentDidMount(){
     axios({
       method: 'get',
-      url: '/getBlog',
+      url: '/api/getBlog',
       loading: true
     }).then((res)=>{
       this.baseUrl = res.baseUrl
@@ -41,7 +41,7 @@ class App extends React.Component {
     let file = category +'/' +item.src
     axios({
       method: 'get',
-      url: '/getMarkdown',
+      url: '/api/getMarkdown',
       params: {
         file: file
       },

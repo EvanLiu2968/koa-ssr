@@ -2,9 +2,37 @@
  * router
  */
 const path = require('path');
+const fs = require('fs');
+const formidable = require("formidable");
 
 module.exports = app => {
   const { router, config } = app;
+  function formDataParse(ctx, next){
+    return new Promise(function(resolve, reject){
+      const form = new formidable.IncomingForm({
+        uploadDir: path.join(config.static.dir, 'images'),
+        keepExtensions: true
+      });
+      form.parse(ctx.req, function(err, fields, files){
+        if(err){
+          reject(err)
+          return;
+        }
+        resolve({
+          fields,
+          files
+        })
+      });
+      form.on('progress', function(bytesReceived, bytesExpected) {
+        console.log(bytesReceived)
+        console.log(bytesExpected)
+      });
+      form.on('file', function(name, file) {
+        console.log(name)
+        console.log(file)
+      });
+    })
+  }
   // page route
   router.get('/', async function(ctx, next) {
     return await ctx.render('index', {
@@ -35,8 +63,53 @@ module.exports = app => {
       isMobile: ctx.validate.isMobile.apply(ctx)
     })
   });
+  router.get('/test', async function(ctx, next) {
+    return await ctx.render('test', {
+      title: `test - ${config.siteName}`,
+      keywords: `test`,
+      description: `test`,
+      isMobile: ctx.validate.isMobile.apply(ctx)
+    })
+  });
+  
   // api control
-  router.get('/getPhoto', async function(ctx, next) {
+  router.post('/api/saveBase64', async function(ctx, next) {
+    try{
+      let base64 = ctx.request.body.base64;
+      base64 = base64.replace(/^(data:image\/(png|jpg|jpeg);base64,)/,'')
+      // let imgPath = path.join(config.static.dir, 'images');
+      // if (!fs.existsSync(imgPath)) {
+      //   fs.mkdirSync(imgPath, '0777');
+      // }
+      fs.writeFileSync('public/images/horse_1.jpg', new Buffer(base64,'base64'))
+      ctx.body = { message: '生成图片成功' }
+    }catch(e){
+      console.log(e)
+      ctx.body = { message: '生成图片错误' }
+    }
+  });
+  router.post('/api/saveFormData', async function(ctx, next) {
+    try{
+      const { fields, files } = await formDataParse(ctx, next)
+      let upload = {};
+      for(let file in files){
+        upload[file] = {
+          name: files[file].name,
+          type: files[file].type,
+          size: files[file].size,
+          path: files[file].path.replace(config.static.dir, ''),
+        }
+      }
+      ctx.body = { message: '上传成功', data: {
+        fields:fields,
+        upload:upload
+      } }
+    }catch(e){
+      console.log(e)
+      ctx.body = { message: '上传错误' }
+    }
+  });
+  router.get('/api/getPhoto', async function(ctx, next) {
     try{
       var res = await ctx.helper.readFileSync(config.cloverDir + 'photo.json')
       ctx.body = JSON.parse(res)
@@ -45,7 +118,7 @@ module.exports = app => {
       ctx.body = {}
     }
   });
-  router.get('/getBlog', async function(ctx, next) {
+  router.get('/api/getBlog', async function(ctx, next) {
     try{
       var res = await ctx.helper.readFileSync(config.cloverDir + 'blog.json')
       ctx.body = JSON.parse(res)
@@ -54,7 +127,7 @@ module.exports = app => {
       ctx.body = {}
     }
   });
-  router.get('/getMarkdown', async function(ctx, next) {
+  router.get('/api/getMarkdown', async function(ctx, next) {
     try{
       let file = ctx.query.file //中文部分需要encode
       let mdStr = await ctx.helper.readFileSync(config.cloverDir + file)
@@ -65,7 +138,7 @@ module.exports = app => {
     }
   });
 
-  router.post('/cloverHook', async function(ctx, next) {
+  router.post('/api/cloverHook', async function(ctx, next) {
     var sig   = ctx.req.headers['x-hub-signature']   //sha1=ef561ae7d40465d664e5f2e76be4441662bdb61d
     var event = ctx.req.headers['x-github-event']    //push
     var id    = ctx.req.headers['x-github-delivery'] //commitID:b146cddc-3291-11e8-9fb3-0148e5324b22

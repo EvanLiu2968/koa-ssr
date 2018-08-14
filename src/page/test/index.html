@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="{{{keywords}}}">
+    <meta name="description" content="{{{description}}}">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <title>{{{title}}}</title>
+  </head>
+  <body>
+  <div class="container" style="padding:20px">
+    <canvas id="canvas"></canvas>
+    <button type="button" class="btn btn-primary" id="canvasTest">Canvas生成图片</button>
+    <form action="/api/saveFormData" method="post">
+      <div class="form-group">
+        <label for="file">上传</label>
+        <input type="file" class="form-control-file" multiple id="file" name="file">
+      </div>
+      <div class="form-group">
+        <label for="text">文本</label>
+        <input type="text" class="form-control" id="text" name="text" placeholder="text">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="check" name="check">
+        <label class="form-check-label" for="check">勾选</label>
+      </div>
+      <button type="button" class="btn btn-primary" id="formTest">上传测试</button>
+    </form>
+  </div>
+  </body>
+</html>

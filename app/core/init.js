@@ -64,9 +64,9 @@ app.use(views(config.views.dir, config.views.option))
 
 require('./middleware')(app, 'preMiddleware');
 
-app.use(bodyparser())
+app.use(bodyparser(config.bodyparser.option))
 
-app.use(cors())
+app.use(cors(config.cors.option))
 
 require('../router')(app);
 app.use(app.router.routes());
