@@ -14,4 +14,4 @@ const vm = new Vue({
   render: h => h(App)
 })
 
-ssrLoader(vm)
+module.exports = ssrLoader(vm)

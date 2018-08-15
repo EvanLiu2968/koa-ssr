@@ -47,12 +47,16 @@ app.use(async (ctx, next)=>{
     ctx.status = 304;
     ctx.body = null;
   }
+  if(ctx.status == 404){
+    await config.notfound.call(ctx, ctx)
+  }
 })
 app.use(async (ctx, next)=>{
   try{
     await next()
   } catch(e) {
-    app.emit('error', e, ctx)
+    console.log(e.stack);
+    await config.onerror.call(ctx, e, ctx)
   }
 })
 
@@ -80,7 +84,7 @@ app.on('error', async (err, ctx) => {
 
 app.listen(config.port, (error, status) => {
   if(error) {
-    app.emit('error', error);
+    console.log(error)
   }
   app.emit('started')
 })

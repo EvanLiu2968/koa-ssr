@@ -31,17 +31,16 @@ document.getElementById('canvasTest').addEventListener('click',function(){
       },
       loading: true
     }).then((res)=>{
-      window.alert(res.message)
+      console.log(res)
     })
   }
 });
 
 document.getElementById('formTest').addEventListener('click',function(){
   let formdata = new FormData();
-  formdata.append('file',document.getElementById('file').files[0]);
+  formdata.append('files',document.getElementById('file').files[0]);
   formdata.append('text',document.getElementById('text').value);
   formdata.append('check',document.getElementById('check').value);
-  console.log(formdata)
   axios({
     url:'/api/saveFormData',
     method:'post',

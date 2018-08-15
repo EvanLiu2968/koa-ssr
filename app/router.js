@@ -24,51 +24,51 @@ module.exports = app => {
         })
       });
       form.on('progress', function(bytesReceived, bytesExpected) {
-        console.log(bytesReceived)
-        console.log(bytesExpected)
+        // console.log(bytesReceived)
+        // console.log(bytesExpected)
       });
       form.on('file', function(name, file) {
-        console.log(name)
-        console.log(file)
+        // console.log(name)
+        // console.log(file)
       });
     })
   }
   // page route
   router.get('/', async function(ctx, next) {
-    return await ctx.render('index', {
+    await ctx.render('index', {
       title: `首页 - ${config.siteName}`,
       keywords: `首页`,
       description: `首页`,
     })
   });
   router.get('/404', async function(ctx, next) {
-    return await ctx.render('404', {
+    await ctx.render('404', {
       title: `404 - ${config.siteName}`,
       keywords: `404`,
       description: `404`,
     })
   });
   router.get('/article', async function(ctx, next) {
-    return await ctx.render('article', {
+    await ctx.render('article', {
       title: `文章 - ${config.siteName}`,
       keywords: `文章`,
       description: `文章`,
     })
   });
   router.get('/photo', async function(ctx, next) {
-    return await ctx.render('photo', {
+    await ctx.render('photo', {
       title: `照片 - ${config.siteName}`,
       keywords: `照片`,
       description: `照片`,
-      isMobile: ctx.validate.isMobile.apply(ctx)
+      isMobile: ctx.validate.isMobile.call(ctx)
     })
   });
   router.get('/test', async function(ctx, next) {
-    return await ctx.render('test', {
+    await ctx.render('test', {
       title: `test - ${config.siteName}`,
       keywords: `test`,
       description: `test`,
-      isMobile: ctx.validate.isMobile.apply(ctx)
+      isMobile: ctx.validate.isMobile.call(ctx)
     })
   });
   
@@ -91,9 +91,9 @@ module.exports = app => {
   router.post('/api/saveFormData', async function(ctx, next) {
     try{
       const { fields, files } = await formDataParse(ctx, next)
-      let upload = {};
+      let uploads = {};
       for(let file in files){
-        upload[file] = {
+        uploads[file] = {
           name: files[file].name,
           type: files[file].type,
           size: files[file].size,
@@ -102,7 +102,7 @@ module.exports = app => {
       }
       ctx.body = { message: '上传成功', data: {
         fields:fields,
-        upload:upload
+        uploads:uploads
       } }
     }catch(e){
       console.log(e)
