@@ -60,8 +60,29 @@ module.exports = {
   // 跨域资源共享 kros
   cors: {
     option: {
-      //
+      origin: '*', // Access-Control-Allow-Origin default is request Origin header {String|Function(ctx)}
+      // allowMethods: '', // Access-Control-Allow-Methods default is 'GET,HEAD,PUT,POST,DELETE,PATCH' {String|Array}
+      // exposeHeaders: '', //Access-Control-Expose-Headers {String|Array}
+      // allowHeaders: '',  //Access-Control-Allow-Headers {String|Array}
+      // maxAge: 3000,  // Access-Control-Max-Age in seconds {String|Number}
+      credentials: true, // Access-Control-Allow-Credentials
+      // keepHeadersOnError: true, // Add set headers to `err.header` if an error is thrown
     }
+  },
+  onerror: async function(e, ctx){
+    await ctx.render('404', {
+      title: `500 - EvanLiu`,
+      keywords: `500`,
+      description: `500`,
+    })
+  },
+  
+  notfound: async function(ctx){
+    await ctx.render('404', {
+      title: `404 - EvanLiu`,
+      keywords: `404`,
+      description: `404`,
+    })
   },
 
   // cloverDir: 'https://raw.githubusercontent.com/EvanLiu2968/clover/master/',

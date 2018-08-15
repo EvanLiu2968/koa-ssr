@@ -34,4 +34,4 @@ class App extends React.Component {
   }
 }
 
-ssrLoader(<App/>)
+module.exports = ssrLoader(App)

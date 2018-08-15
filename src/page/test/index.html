@@ -13,7 +13,7 @@
   <div class="container" style="padding:20px">
     <canvas id="canvas"></canvas>
     <button type="button" class="btn btn-primary" id="canvasTest">Canvas生成图片</button>
-    <form action="/api/saveFormData" method="post">
+    <form action="/api/saveFormData" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="file">上传</label>
         <input type="file" class="form-control-file" multiple id="file" name="file">
