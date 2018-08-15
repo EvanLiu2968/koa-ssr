@@ -1,28 +1,59 @@
 # Webpack4 plus koa
 
-> 使用webpack4.8+、koa2构建的 Node服务端渲染项目，集成react和vue.
+> 基于webpack4、koa2构建的 Node项目，集成react和vue，多页面编译，支持开发、生产多种场景。
+
+目前最新版`webpack4.16.5`可运行
+- [https://webpack.js.org](https://webpack.js.org/concepts/)
 
 ## 打包构建
 
-### 配置项
-
+- 配置项
 实际运行的配置为`config.default.js` + `config.${process.env.APP_ENV}.js`
 
-### 多页面入口
-
+- 多页面入口
 页面入口为`src/page/**/index.js`
 
 html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 
+- 自动刷新
+客户端代码修改自动编译刷新，服务端代码修改`nodemon`自动重启(需手动刷新，考虑到这属于低频场景)
+
+- 编译优化
+`happypack`多进程编译，`webpack-parallel-uglify-plugin`多进程js压缩，使用webpack4的`optimization`模块拆分优化
+
 ## Node服务模块
 
-借鉴egg的 `约定优于配置` 设计思想，
-`app/core`为微框架核心，定制了一整套服务模块规范，可参见server源码，示例如下
+借鉴egg的 `约定优于配置` 设计思想，`app/core`为框架核心，定制了一整套微服务框架规范，详见`app`源码
+
+### Config
+
+- `preMiddleware` 前置中间件
+- `postMiddleware` 后置中间件
+- `static` 静态资源配置
+- `views` 静态资源配置
+- `bodyparser` body解析配置，FormData使用`formidable`解析
+- `cors` 跨域资源配置
+- `onerror` 500处理
+- `notfound` 404处理
+
+约定所有中间件配置参数为config的同名key值，例如：
+```javascript
+// middleware/logger.js
+
+module.exports = (app) => {
+  const { config } = app;
+  const option = config.logger
+
+  return async function(ctx, next){
+    // handle with logger option
+  }
+};
+```
 
 ### Extend
 
 `app/extend`目录下的模块用于扩展ctx对象
-调用方式示例：`ctx.validate.isMobile.apply(ctx)`
+调用方式示例：`ctx.validate.isMobile.call(ctx)`
 
 ### Middleware
 
