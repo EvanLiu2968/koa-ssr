@@ -1,6 +1,6 @@
 # Webpack4 plus koa
 
-> 基于webpack4、koa2构建的 Node项目，集成react和vue，多页面编译，支持开发、生产多种场景。
+> 基于webpack4、koa2构建的 Node项目，集成react, vue和node服务，多页面入口，支持开发、生产多种场景。
 
 目前最新版`webpack4.16.5`可运行
 - [https://webpack.js.org](https://webpack.js.org/concepts/)
@@ -24,16 +24,17 @@ html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 ## Node服务模块
 
 借鉴egg的 `约定优于配置` 设计思想，`app/core`为框架核心，定制了一整套微服务框架规范。
-主要目的是实现egg的规范，简化了实现过程，详见`app`源码
+主要目的是实现egg的规范，简化实现过程，详见`app`源码
 
 ### Config
 
 - `preMiddleware` 前置中间件
 - `postMiddleware` 后置中间件
 - `static` 静态资源配置
-- `views` 静态资源配置
+- `views` 模板配置
 - `bodyparser` body解析配置，FormData使用`formidable`解析
 - `cors` 跨域资源配置
+- `formidable` 上传配置
 - `onerror` 500处理
 - `notfound` 404处理
 
