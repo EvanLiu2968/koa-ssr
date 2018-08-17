@@ -2,6 +2,7 @@
  * 扩展koa原型
  */
 const Koa = require('koa');
+const { matchFile } = require('./tool');
 
 module.exports = class Core extends Koa {
   constructor() {
@@ -11,7 +12,6 @@ module.exports = class Core extends Koa {
      * extend context
      */
     const ctx = this.context
-    const matchFile = require('./matchFile')
     let extend = matchFile('extend')
     Object.keys(extend).forEach((item)=>{
       ctx[item] = extend[item]
@@ -30,7 +30,7 @@ module.exports = class Core extends Koa {
    * Controller
    */
   get Controller() {
-    const baseController = require('./controller');
+    const baseController = require('./base_controller');
     return baseController
   }
   
@@ -38,7 +38,7 @@ module.exports = class Core extends Koa {
    * Service
    */
   get Service() {
-    const baseService = require('./service');
+    const baseService = require('./base_service');
     return baseService
   }
 }

@@ -10,9 +10,9 @@ if(process.env.APP_ENV == 'dev'){
 
   nodemon({
     "execMap": {
-      "js": 'node --harmony ./app/core/init.js'
+      "js": 'node --harmony ./app/core/index.js'
     },
-    "script": './app/core/init.js',
+    "script": './app/core/index.js',
     "ext": 'js html',
     "restartable": "rs",
     "verbose": true,
@@ -44,5 +44,5 @@ if(process.env.APP_ENV == 'dev'){
     console.log(chalk.yellow('\n' + log + ' \n'))
   });
 }else{
-  require('./app/core/init')
+  require('./app/core')
 }

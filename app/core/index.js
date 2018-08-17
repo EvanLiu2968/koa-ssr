@@ -35,11 +35,13 @@ const config = require(path.join(process.cwd(), 'config'))
 config.baseDir = config.baseDir || process.cwd();
 
 app.config = config
+app.keys = config.keys;
+
 app.router = new Router();
+app.controller = require('./controller')(app);
+app.service = require('./service')(app);
 
 require('../app')(app);
-
-app.keys = config.keys;
 
 app.use(async (ctx, next)=>{
   await next()
