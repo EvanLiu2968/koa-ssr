@@ -1,10 +1,13 @@
 /*
- * 根据match目录require对应模块
+ * tools or mixins
  */
 const path = require('path')
 const glob = require('glob')
 
-module.exports = function(dir){
+/*
+ * 根据match目录require对应模块
+ */
+function matchFile(dir){
   let files = glob.sync(path.join(__dirname, '../', dir+'/**.js'));
   let match = {};
   if(files){
@@ -14,4 +17,8 @@ module.exports = function(dir){
     })
   }
   return match
+}
+
+module.exports = {
+  matchFile,
 }

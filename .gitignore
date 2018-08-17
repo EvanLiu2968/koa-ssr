@@ -3,8 +3,10 @@
 .idea
 .DS_Store
 npm-debug.log
-/node_modules
-/logs/*
-/public/*
+node_modules
+logs/*
+public/*
 !public/images
-/test.js
+# public/upload/*
+!public/upload/README.md
+!public/upload/.gitkeep

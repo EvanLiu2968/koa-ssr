@@ -23,7 +23,8 @@ html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 
 ## Node服务模块
 
-借鉴egg的 `约定优于配置` 设计思想，`app/core`为框架核心，定制了一整套微服务框架规范，详见`app`源码
+借鉴egg的 `约定优于配置` 设计思想，`app/core`为框架核心，定制了一整套微服务框架规范。
+主要目的是实现egg的规范，简化了实现过程，详见`app`源码
 
 ### Config
 
@@ -66,6 +67,14 @@ core里内置了一些常用中间件，并且可以通过配置开启中间件(
 ```javascript
 config.middleware = config.preMiddleware.concat(config.coreMiddleware).concat(config.postMiddleware)
 ```
+
+### Controller
+
+控制层，路由逻辑封装
+
+### Service
+
+服务层，服务逻辑封装
 
 ## Start
 

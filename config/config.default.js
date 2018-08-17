@@ -69,6 +69,13 @@ module.exports = {
       // keepHeadersOnError: true, // Add set headers to `err.header` if an error is thrown
     }
   },
+  formidable: {
+    option: {
+      uploadDir: path.join(__dirname, '../public/upload'),
+      keepExtensions: true
+    }
+  },
+
   onerror: async function(e, ctx){
     await ctx.render('404', {
       title: `500 - EvanLiu`,
