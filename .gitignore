@@ -7,6 +7,3 @@ node_modules
 logs/*
 public/*
 !public/images
-# public/upload/*
-!public/upload/README.md
-!public/upload/.gitkeep

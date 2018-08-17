@@ -5,6 +5,9 @@ const formidable = require('formidable');
 
 module.exports = app => {
   const { config } = app;
+  if (!fs.existsSync(config.formidable.option.uploadDir)) {
+    fs.mkdirSync(config.formidable.option.uploadDir, '0777');
+  }
   function formDataParse(ctx) {
     return new Promise(function(resolve, reject){
       const form = new formidable.IncomingForm(config.formidable.option);
@@ -74,9 +77,6 @@ module.exports = app => {
         let base64 = ctx.request.body.base64;
         base64 = base64.replace(/^(data:image\/(png|jpg|jpeg);base64,)/,'')
         let imgPath = path.join(config.formidable.option.uploadDir, 'temp.jpg');
-        // if (!fs.existsSync(imgPath)) {
-        //   fs.mkdirSync(imgPath, '0777');
-        // }
         fs.writeFileSync(imgPath, new Buffer(base64,'base64'))
         ctx.body = { message: '生成图片成功' }
       }catch(e){
