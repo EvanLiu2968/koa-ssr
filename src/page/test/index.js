@@ -31,6 +31,7 @@ document.getElementById('canvasTest').addEventListener('click',function(){
       },
       loading: true
     }).then((res)=>{
+      alert(res.message)
       console.log(res)
     })
   }
@@ -49,6 +50,7 @@ document.getElementById('formTest').addEventListener('click',function(){
     headers: {'Content-Type': 'multipart/form-data'},
     loading: true
   }).then((res)=>{
+    alert(res.message)
     console.log(res)
   })
 })
