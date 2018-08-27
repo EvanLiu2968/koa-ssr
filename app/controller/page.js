@@ -7,7 +7,7 @@ module.exports = app => {
   return class PageController extends app.Controller {
     async index(ctx) {
       
-      await ctx.render('index', {
+      await ctx.ssrRender.call(ctx, 'index', {
         title: `首页 - ${config.siteName}`,
         keywords: `首页`,
         description: `首页`,

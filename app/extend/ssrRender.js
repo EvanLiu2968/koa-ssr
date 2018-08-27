@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom/server')
 module.exports = async function(file, props){
   const ctx = this;
   const { config } = ctx;
-  const App = require(path.join(config.views.dir, file));
+  const App = require(path.join(config.static.dir, 'view', file));
   const root = ReactDOM.renderToString(React.createElement(App, props))
   await ctx.render(file, Object.assign({}, props, {
     root: root,
