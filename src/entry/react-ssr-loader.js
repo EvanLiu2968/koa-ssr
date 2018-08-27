@@ -19,8 +19,8 @@ module.exports = function (App, element){
     }
     DOMRender.render(<App {...props}/>, element)
   } else {
-    // return DOMRender.renderToString(jsx)
-    // return DOMRender.renderToStaticMarkup(jsx)
+    // return DOMRender.renderToString(<App />)
+    // return DOMRender.renderToStaticMarkup(<App />)
     return App
   }
 }

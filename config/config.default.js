@@ -6,6 +6,9 @@ module.exports = {
   // baseDir: path.join(__dirname, '../'),
   siteName: 'EvanLiu',
 
+  //是否开启服务端渲染
+  serverSideRendering: true,
+
   // 服务端口
   port: 9080,
 

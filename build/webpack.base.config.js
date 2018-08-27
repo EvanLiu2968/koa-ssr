@@ -79,7 +79,7 @@ module.exports = {
         },
         default: false,
         commons: {
-          // test: /\.(?!(scss|less|styl|stylus|css))$/, //排除css chunks，先一个页面一个css
+          test: /\.(?!(css|sass|scss|less|styl|stylus))$/, //排除css chunks，先一个页面一个css
           name: 'commons',
           filename: config.env !== 'dev' ? 'js/[name]_[hash:10].js' : 'js/[name].js',
           // minSize: 20000, //默认为 30000(30kb),公用业务代码大于这个尺寸则抽取出来
@@ -123,7 +123,8 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
+          // "style-loader",
           "css-loader",
           "less-loader"
         ]
@@ -131,7 +132,8 @@ module.exports = {
       {
         test: /\.sass$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
+          // "style-loader",
           "css-loader",
           "sass-loader"
         ]
@@ -139,7 +141,8 @@ module.exports = {
       {
         test: /\.styl$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
+          // "style-loader",
           "css-loader",
           "stylus-loader"
         ]
@@ -176,7 +179,17 @@ module.exports = {
     extensions: ['.js', '.vue', '.styl', '.stylus', '.less', '.css', '.jsx', '.json', '.md'],
     // extensions: ['.js', '.vue', '.jsx']
   },
+  // https://webpack.js.org/configuration/externals/#externals 外置化应用程序依赖模块，例如dll、cdn等
+  // externals: {
+  //   jquery: "commonjs2 jQuery",
+  //   react: "React"
+  // },
   plugins: [
+    // //增加第三方库
+    // new webpack.ProvidePlugin({
+    //     jQuery: "jquery",
+    //     $: "jquery"
+    // }),
     //vue-loader 15版本后必须注册插件
     new VueLoaderPlugin(),
     //抽出样式
@@ -184,11 +197,6 @@ module.exports = {
       filename: config.env !== 'dev' ? 'css/[name]_[hash:10].css' : 'css/[name].css',
       chunkFilename: config.env !== 'dev' ? 'css/[name]_[hash:10].css' : 'css/[name].css'
     }),
-    // //增加第三方库
-    // new webpack.ProvidePlugin({
-    //     jQuery: "jquery",
-    //     $: "jquery"
-    // }),
     new HappyPack(
       {
       id: "babel",

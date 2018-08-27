@@ -9,6 +9,9 @@ class App extends React.Component {
   constructor(props){
     super(props)
   }
+  componentDidMount(){
+    console.log(this.props)
+  }
   render(){
     return (
       <div className="index-wrapper">

@@ -1,6 +1,7 @@
 # Webpack4 plus koa
 
 > 基于webpack4、koa2构建的 Node项目，集成react, vue和node服务，多页面入口，支持开发、生产多种场景。
+- Node版本需要8+
 
 目前最新版`webpack4.16.5`可运行
 - [https://webpack.js.org](https://webpack.js.org/concepts/)
@@ -20,6 +21,16 @@ html入口为`src/page/**/index.html` 或者 `src/entry/layout.html`
 
 - 编译优化
 `happypack`多进程编译，`webpack-parallel-uglify-plugin`多进程js压缩，使用webpack4的`optimization`模块拆分优化
+
+- 支持服务端渲染
+关键配置大概有几个：
+  - target: 'node' 由于输出代码的运行环境是node，源码中依赖的node原生模块没必要打包进去；
+
+  - `externals: [nodeExternals()]` webpack-node-externals的目的是为了防止node_modules目录下的第三方模块被打包进去，因为nodejs默认会去node_modules目录下去寻找和使用第三方模块。
+
+  - 忽略掉不需要被打包进用于服务端的代码中去的文件，例如css之类
+
+  - `libraryTarget： 'commonjs2'`以commonjs2规范导出渲染函数，以供给采用nodejs编写的http服务器代码调用。
 
 ## Node服务模块
 
