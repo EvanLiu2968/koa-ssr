@@ -13,8 +13,7 @@ module.exports = function (vm, element){
     vm.$mount(element)
   } else {
     // const DOMRender = require('vue-server-renderer').createRenderer()
-    // 返回Promise可以配合await变成同步
-    // return new Promise((resolve,reject)=>{
+    // return new Promise((resolve,reject)=>{ // 返回Promise可以配合await变成同步
     //   DOMRender.renderToString(vm, (e, html) => {
     //     if (e){
     //       reject(e)
@@ -23,5 +22,6 @@ module.exports = function (vm, element){
     //     }
     //   })
     // })
+    return vm
   }
 }

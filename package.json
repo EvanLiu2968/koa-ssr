@@ -7,9 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env APP_ENV=dev node index.js",
-    "build": "cross-env node build/index.js",
+    "build": "npm run clean && cross-env node build/index.js",
     "start": "cross-env node index.js",
-    "clean": "rm -rf public/js/* && rm -rf public/css/* && rm -rf public/html/* && rm -rf public/fonts/* ",
+    "clean": "./scripts/clean.sh ./public",
     "prepublish": "./scripts/prepare.sh",
     "postpublish": "./scripts/release.sh",
     "kill-node": "node ./scripts/kill.js",
@@ -52,6 +52,7 @@
     "react-dom": "^16.4.0",
     "remarkable": "^1.7.1",
     "vue": "^2.5.16",
+    "vue-server-renderer": "^2.5.17",
     "web-inject": "^1.0.0"
   },
   "devDependencies": {
@@ -95,6 +96,7 @@
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   }
 }
