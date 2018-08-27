@@ -5,8 +5,8 @@ const Koa = require('koa');
 const { matchFile } = require('./tool');
 
 module.exports = class Core extends Koa {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     
     /**
      * extend context
@@ -21,7 +21,7 @@ module.exports = class Core extends Koa {
     /**
      * 将app挂载到context
      */
-    
+    this.config = this.context.config = props.config;
     this.context.app = this;
 
   }

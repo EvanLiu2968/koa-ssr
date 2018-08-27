@@ -29,12 +29,13 @@ Date.prototype.format = function(fmt) {
   return fmt;
 }
 
-const app = new CoreApplication()
-
 const config = require(path.join(process.cwd(), 'config'))
 config.baseDir = config.baseDir || process.cwd();
 
-app.config = config
+const app = new CoreApplication({
+  config: config
+})
+
 app.keys = config.keys;
 
 app.router = new Router();
