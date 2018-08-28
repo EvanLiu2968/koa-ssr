@@ -8,13 +8,13 @@
   "plugins": [
     [
       "transform-runtime",
-      "transform-class-properties",
-      "transform-decorators-legacy",
       {
         "polyfill": true,
         "regenerator": true
       }
-    ]
+    ],
+    "transform-class-properties",
+    "transform-decorators-legacy"
   ],
   "comments": false
 }
