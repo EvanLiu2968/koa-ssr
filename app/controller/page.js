@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = app => {
-  const { config } = app;
+  const { config, controller } = app;
   return class PageController extends app.Controller {
     async index(ctx) {
       

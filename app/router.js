@@ -13,9 +13,7 @@ module.exports = app => {
   router.get('/test', controller.page.test);
   
   // api control
-  router.get('/api/getPhoto', controller.api.getPhoto);
-  router.get('/api/getBlog', controller.api.getBlog);
-  router.get('/api/getMarkdown', controller.api.getMarkdown);
+  router.get('/api/articles/README', controller.api.getREADME);
 
   router.post('/api/cloverHook', controller.api.cloverHook);
   router.post('/api/saveBase64', controller.api.saveBase64);

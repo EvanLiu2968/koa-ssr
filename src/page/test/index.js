@@ -2,7 +2,6 @@ import webInject from 'web-inject'
 import axios from 'libs/axios';
 
 webInject
-.css('https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css')
 .css(
 `
 #canvas{
@@ -11,6 +10,9 @@ webInject
 }
 `
 )
+.css('https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css', ()=>{
+  console.log('bootstrap样式注入成功')
+})
 
 document.getElementById('canvasTest').addEventListener('click',function(){
   const canvas = document.getElementById('canvas');
@@ -31,7 +33,7 @@ document.getElementById('canvasTest').addEventListener('click',function(){
       },
       loading: true
     }).then((res)=>{
-      alert(res.message)
+      alert(res.message + '，已上传至public/upload')
       console.log(res)
     })
   }
@@ -50,7 +52,7 @@ document.getElementById('formTest').addEventListener('click',function(){
     headers: {'Content-Type': 'multipart/form-data'},
     loading: true
   }).then((res)=>{
-    alert(res.message)
+    alert(res.message + '，已上传至public/upload')
     console.log(res)
   })
 })

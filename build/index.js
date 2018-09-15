@@ -11,9 +11,6 @@ const WebpackDevServerOutput = require('./plugins/webpack-dev-server-output');
 util.runCmd('sh', [path.join(config.scriptsDir,'clean.sh')], function(res){
   console.log(chalk.green(res + ' \n'))
 });
-util.runCmd('sh', [path.join(config.scriptsDir,'pullClover.sh')], function(res){
-  console.log(chalk.green(res + ' \n'))
-});
 
 if (process.env.APP_ENV == 'dev') {
   const webpackDevConfig = require('./webpack.dev.config');

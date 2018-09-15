@@ -32,32 +32,13 @@ module.exports = app => {
     })
   }
   return class ApiController extends app.Controller {
-    async getPhoto(ctx) {
+    async getREADME(ctx) {
       try{
-        var res = await ctx.helper.readFileSync(config.cloverDir + 'photo.json')
-        ctx.body = JSON.parse(res)
-      }catch(e){
-        console.log(e)
-        ctx.body = {}
-      }
-    }
-    async getBlog(ctx) {
-      try{
-        var res = await ctx.helper.readFileSync(config.cloverDir + 'blog.json')
-        ctx.body = JSON.parse(res)
-      }catch(e){
-        console.log(e)
-        ctx.body = {}
-      }
-    }
-    async getMarkdown(ctx) {
-      try{
-        let file = ctx.query.file //中文部分需要encode
-        let mdStr = await ctx.helper.readFileSync(config.cloverDir + file)
+        let mdStr = await ctx.helper.readFileSync(config.baseDir + '/README.md')
         ctx.body = ctx.helper.markdown.render(mdStr)
       }catch(e){
         console.log(e)
-        ctx.error()
+        ctx.body = { message: '服务错误' }
       }
     }
     async cloverHook(ctx) {
