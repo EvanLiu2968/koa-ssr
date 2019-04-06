@@ -133,12 +133,12 @@ export const loading = {
   show: function(){
     div = document.createElement('div');
     document.body.appendChild(div);
-    component = new Loading({
+    component = React.createElement(Loading, {
       fullscreen: true,
       text: '正在加载中',
       loading: true
     });
-    ReactDOM.render(component.render(), div);
+    ReactDOM.render(component, div);
   },
   hide: function(){
     if(div){
