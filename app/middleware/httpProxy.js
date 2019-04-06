@@ -19,8 +19,8 @@ module.exports = (app) => {
       },
       onProxyReq:function (proxyReq, req, res) {
         // add custom header or body to request
-        // console.log('=======proxyReq')
-        // console.log(proxyReq)
+        console.log('proxyReqUrl:'+ 'https://api.github.com' + req.url)
+        // console.log(req.headers)
       },
       pathRewrite: {
         '^/proxy/github': '',
